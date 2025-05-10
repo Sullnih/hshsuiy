@@ -1,0 +1,253 @@
+/* --- Reset & Basic Style --- */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fceef5;
+    color: #555;
+    /* Allow scrolling on mobile if content overflows vertically */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align to bottom to anchor desk */
+    min-height: 100vh;
+}
+
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#musicBtn {
+    background-color: #ffb6c1;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#musicBtn:hover {
+    background-color: #ff8fab;
+    transform: scale(1.05);
+}
+
+.room-container {
+    width: 100%;
+    max-width: 1000px;
+    /* Use min-height to allow content expansion, especially on mobile */
+    min-height: 95vh;
+    height: auto; /* Let height adjust */
+    position: relative;
+    background: linear-gradient(to bottom, #fdeff4, #fce3ef);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden; /* Keep this */
+    margin: 10px; /* Add some margin on small screens */
+    box-sizing: border-box; /* Include padding/border in size */
+}
+
+/* --- Teks Background --- */
+.room-container::before {
+    content: 'semangat nadia';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    font-family: 'Pacifico', cursive;
+    font-size: 10vw;
+    color: rgba(0, 0, 0, 0.08); /* Made slightly more transparent */
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* --- Elemen Estetik Kupu-kupu (CSS Based) --- */
+@keyframes floatHalk {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+    75% { transform: translateY(3px) rotate(-3deg); }
+}
+
+@keyframes floatLebihAktif {
+    0%, 100% { transform: translateY(0) translateX(0) rotate(-5deg); }
+    25% { transform: translateY(-8px) translateX(5px) rotate(5deg); }
+    50% { transform: translateY(-15px) translateX(-5px) rotate(0deg); }
+    75% { transform: translateY(-5px) translateX(8px) rotate(8deg); }
+}
+
+.butterfly {
+    position: absolute;
+    width: 8px; height: 10px;
+    z-index: 2; pointer-events: none;
+    animation: floatHalk 4s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.butterfly-css::before, .butterfly-css::after {
+    content: ''; position: absolute;
+    width: 22px; height: 30px;
+    border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+    top: -12px;
+}
+
+.butterfly-css::before {
+    left: -18px;
+    background: linear-gradient(135deg, #e1b0e1, #c898c8);
+    transform: rotate(-40deg);
+    box-shadow: -2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.butterfly-css::after {
+    right: -18px;
+    background: linear-gradient(45deg, #ffc0cb, #ffb3be);
+    transform: rotate(40deg);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Variasi Kupu-kupu */
+.bfly-1 { top: 15%; left: 10%; animation-name: floatLebihAktif; animation-duration: 5s; z-index: 4; }
+.bfly-1::before { background: linear-gradient(135deg, #fddde6, #fcc7d5); }
+.bfly-1::after { background: linear-gradient(45deg, #fef4e5, #fde7c9); }
+
+.bfly-2 { top: 30%; right: 12%; animation-delay: 0.8s; transform: scale(1.1); }
+.bfly-3 { top: 60%; left: 18%; animation-duration: 3.5s; animation-delay: 1.5s; z-index: 4; transform: scale(0.9); }
+.bfly-3::before { background: linear-gradient(135deg, #b0e0e6, #a3cfd8); }
+.bfly-3::after { background: linear-gradient(45deg, #d8bfd8, #c9a9c9); }
+
+.bfly-4 { top: 10%; right: 30%; animation-name: floatLebihAktif; animation-duration: 6s; animation-delay: 0.3s; opacity: 0.8; }
+.bfly-4::before { background: linear-gradient(135deg, #fffacd, #f5e695); }
+.bfly-4::after { background: linear-gradient(45deg, #ffefd5, #f9e2bc); }
+
+/* --- Area Meja & Kursi --- */
+.desk-area {
+    position: relative; /* Change from absolute to relative for easier flow */
+    width: 100%;
+    height: 220px; /* Slightly reduced base height */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align desk to bottom of this area */
+    margin-top: auto; /* Push desk area towards the bottom */
+    padding-bottom: 10px; /* Add some space below desk */
+}
+
+.chair {
+    position: absolute;
+    bottom: 10px; /* Align with desk area padding bottom */
+    left: 5%; /* Position relative to viewport left */
+    transform: translateX(0); /* Remove horizontal transform */
+    width: 120px; /* Slightly smaller base size */
+    z-index: 3;
+    opacity: 0.85;
+    transition: transform 0.3s ease-in-out;
+}
+
+.chair:hover {
+    transform: scale(1.05);
+}
+
+.desk {
+    width: 70%;
+    max-width: 550px; /* Slightly smaller max width */
+    height: 130px; /* Slightly reduced height */
+    background-color: #f5e6d3;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    position: relative; /* Keep relative for book positioning context */
+    z-index: 2;
+    /* Flexbox properties ensure the book is centered */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Add margin to separate from chair if needed, though chair is further left now */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Buku Interaktif --- */
+.book {
+    width: 180px; /* Slightly smaller closed book */
+    height: 130px;
+    background-color: #ffb6c1;
+    border: 2px solid #e0a0ab;
+    border-radius: 5px 8px 8px 5px;
+    position: relative; /* Relative to its flex position on desk */
+    cursor: pointer;
+    transition: all 0.5s ease-in-out, transform 0.3s ease;
+    z-index: 5;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.book:hover {
+    transform: scale(1.05);
+}
+
+.book-cover { text-align: center; color: white; transition: opacity 0.3s ease; padding: 10px; }
+.cover-title { font-family: 'Pacifico', cursive; font-size: 18px; margin-bottom: 5px; } /* Smaller */
+.cover-subtitle { font-size: 11px; } /* Smaller */
+
+.book-pages { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #fffaf0; border-radius: inherit; }
+
+.page { width: 50%; height: 100%; float: left; padding: 12px; box-sizing: border-box; overflow-y: auto; } /* Slightly less padding */
+.page-left { border-right: 1px dashed #ccc; }
+
+.page h3 { margin-top: 0; margin-bottom: 8px; color: #d18ca4; font-family: 'Pacifico', cursive; text-align: center; font-size: 16px; } /* Smaller */
+.page p { font-size: 12px; line-height: 1.5; color: #666; margin-bottom: 8px; } /* Smaller */
+
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 4px; } /* Smaller thumbs */
+.photo-gallery img { width: 100%; height: auto; border-radius: 3px; box-shadow: 1px 1px 2px rgba(0,0,0,0.1); display: block; }
+
+.book.open {
+    width: 90vw; /* Use viewport width for open book width */
+    max-width: 450px; /* Max width for open book */
+    height: 65vh; /* Use viewport height for open book height */
+    max-height: 300px; /* Max height for open book */
+    background-color: #fffaf0;
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.2);
+    border-color: #e0a0ab;
+    /* Ensure it stays centered even when larger */
+    /* Flex centering on parent (.desk) handles this */
+}
+
+.book.open .book-cover { opacity: 0; pointer-events: none; }
+.book.open .book-pages { display: flex; }
+
+/* =========================================== */
+/* --- Responsiveness --- */
+/* =========================================== */
+
+/* --- Tablet (and potentially larger phones) --- */
+@media (max-width: 768px) {
+    .room-container { margin: 5px; min-height: 98vh;} /* Less margin */
+    .room-container::before { font-size: 12vw; color: rgba(180, 120, 150, 0.07); }
+
+    .butterfly { width: 7px; height: 9px; }
+    .butterfly-css::before, .butterfly-css::after { width: 20px; height: 26px; top: -11px; }
+    .butterfly-css::before { left: -16px; }
+    .butterfly-css::after { right: -16px; }
+
+    .bfly-1 { top: 12%; left: 8%; }
+    .bfly-2 { top: 25%; right: 10%; }
+    .bfly-3 { top: 55%; left: 15%; }
+    .bfly-4 { top: 8%; right: 25%; }
+
+    .desk-area { height: 200px; padding-bottom: 5px;}
+    .chair { width: 100px; left: 3%; bottom: 5px; }
+    .desk { width: 80%; height: 120px; max-width: 500px; }
+
+    .book { width: 160px; height: 110px; }
+    .cover-title { font-size: 16px; }
+    .cover-subtitle { font-size: 10px; }
+
+    .book.open {
+         width: 90vw; max-width: 480px; /* Adjust open book size */
+         height: 70vh; max
